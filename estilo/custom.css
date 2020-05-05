@@ -1,0 +1,46 @@
+.logo {
+    background-image: url(../img/logo.svg);
+    object-fit: cover;
+}
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
+
+iframe {
+    border-radius: 43px 94px 45px 96px;
+    -moz-border-radius: 43px 94px 45px 96px;
+    -webkit-border-radius: 43px 94px 45px 96px;
+    border: 7px solid #524f52;
+}
+
+.slider {
+    width: 100%;
+    border: 8px ridge grey;
+}
+
+.compra {
+    background-color: #826363;
+}
+
+.card1 {
+    border: 8px inset greenyellow;
+}
+
+.masthead {
+    height: 70vh;
+    min-height: 250px;
+    background-image: url(../img/header.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.promoting-card,
+.wiki {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.116), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
