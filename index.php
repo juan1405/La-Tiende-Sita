@@ -1,3 +1,4 @@
+<!--Es el index de los usuarios invitados-->
 <?php
 
 include 'global/config.php';
@@ -56,8 +57,6 @@ include 'templates/cabecera.php';
                     </div>
                 </div>
 
-
-
                 <p class=" bg-dark text-white text-center display-4"><strong>Coches más vistos</strong></p>
 
                 <div class="row text-center">
@@ -81,7 +80,7 @@ include 'templates/cabecera.php';
                                 <audio controls="controls">
                                         <source src="audio/2.mp3" type="audio/mpeg" />
                                         Your browser does not support the audio element.
-                                     </audio>
+                                </audio>
                             </div>
                             <div class="col-lg-3  col-sm-6 col-xs-12 position-relative ">
                                 <img src="img/g63.jpg " class="img-fluid rounded " style="width: 79%;">
@@ -106,38 +105,28 @@ include 'templates/cabecera.php';
                         </div>
                     </div>
                 </div>
-
     <br>
-    <?php if ($mensaje!="") {
-        # code...
-     ?>
-        <div class="alert alert-primary" role="alert">
-            <?php echo $mensaje; ?>
-            <a href="mostrarCarrito.php" class="badge badge-success">Ver carrito</a>
-        </div>
-    <?php } ?>
-
+ 
     <div class="row">
 
     <?php
-    
+    // Hace una consulta preparada para que devuelva todos los productos de la BD y lo convierte en un array que luego imprimiremos para mostrar el contenido.
         $sentencia=$pdo->prepare("SELECT * FROM tblproductos");
         $sentencia->execute();
         $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-    // print_r($listaProductos);
-        
-        ?>
-        <?php foreach($listaProductos as $producto){ ?>
+    ?>
+
+<?php foreach($listaProductos as $producto){ ?>
             <div class="col-lg-3  col-sm-6 col-xs-12 position-relative">
                 <div class="card">
                     <img class="card-img-top" title="<?php echo $producto['Nombre']  ?>" src="<?php echo $producto['Imagen']  ?>" alt="<?php echo $producto['Nombre']  ?>" data-toggle="popover"  data-trigger="hover" data-content="<?php echo $producto['Descripcion']  ?>" alt="<?php echo $producto['Nombre']  ?>" height="317px" >
                     <div class="card-body">
                         <span><?php  echo $producto['Nombre']  ?></span>
-                        <h5 class="card-title"><?php echo $producto['Precio']  ?>€</h5>
+                        <h5 class="card-title"><?php echo number_format($producto['Precio'],2)  ?>€</h5>
                         <p class="card-text"><?php echo $producto['Descripcion']  ?></p>   
 
                         <form action="" method="post">
-
+    <!--Encripta los valores de los productos y los manda a carrito.php mediante la accion Agregar-->
                         <input type="hidden" name="id" id="id" value="<?php  echo openssl_encrypt(  $producto['ID'], COD, KEY);  ?>">
                         <input type="hidden" name="nombre" id="nombre" value="<?php  echo openssl_encrypt(  $producto['Nombre'], COD, KEY);  ?>">
                         <input type="hidden" name="precio" id="precio" value="<?php  echo openssl_encrypt(  $producto['Precio'], COD, KEY);  ?>">
@@ -148,16 +137,11 @@ include 'templates/cabecera.php';
                     </div>
                 </div>
             </div>
-        <?php } ?>     
+<?php } ?>     
 
     </div>
 </div>
 
-    <script>
-        $(function () {
-             $('[data-toggle="popover"]').popover()
-        });
-    </script>
 
 <?php
 include 'templates/pie.php';

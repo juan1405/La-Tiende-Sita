@@ -1,3 +1,4 @@
+<!--Es la página principal del administrador a la cual sólo tiene acceso el administrador de la página.-->
 <?php
 include 'global/config.php';
 include 'global/conexion.php';

@@ -1,3 +1,4 @@
+<!---En esta parte se ve los productos que has comprado y puedes tener la factura y realizar la compra con paypal. Sólo tienen acceso aquellos usuarios que pueden comprar-->
 <?php
 ob_start();
 ?>
@@ -18,6 +19,7 @@ if (!isset($_SESSION["usuario"])) {
 
     
 }else {
+    /* Recupera el id de la sesión que hay iniciada y mete en la tabla de ventas y en la de detallaventa los detalles que tienen los productos que se compran */
     if ($_POST) {
         $total=0;
         $SID=session_id();
@@ -60,16 +62,100 @@ if (!isset($_SESSION["usuario"])) {
 }
 
 ?>
+<!--Aquí empieza la parte de pagar con PayPal -->
 
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<style>
+    
+/* Media query for mobile viewport */
+
+@media screen and (max-width: 400px) {
+    #paypal-button-container {
+        width: 100%;
+    }
+}
+
+
+/* Media query for desktop viewport */
+
+@media screen and (min-width: 400px) {
+    #paypal-button-container {
+        width: 250px;
+        display: inline-block;
+    }
+}
+</style>
 
 <div class="jumbotron">
-    <h1 class="display-4">¡Paso final!</h1>
+    <h1 class="display-4 text-center">¡Tu compra se ha realizado correctamente!</h1>
     <hr class="my-4">
-    <p class="lead"> Estas apunto de pagar la cantidad de: 
-        <h4> <?php echo number_format($total, 2); ?>€ </h4>
+    <p class="lead text-center"> Total a Pagar: 
+        <h4 class="text-center"> <?php echo number_format($total, 2); ?>€ </h4>
     </p>
-    <p>Los productos pdran ser descargados una vez realizado el pago</p>
+    <div class="text-center">
+        <div id="paypal-button-container"></div> 
+    </div>
+        
+
+    <h3 class="text-center">Prodcutos comprados:</h3>
+    <p class="lead text-center">
+
+   <?php foreach($_SESSION['CARRITO'] as $indice=>$producto){ 
+      echo "->" . $producto['NOMBRE']."<br>";
+        echo "->" . number_format($producto['PRECIO'],2)."€";
+       
+ 
+    }  
+    ?>   
+    </p>
+    <div class="text-center">
+        <a href="productos.php" class="btn btn-danger">Ver Factura</a>
+    </div>
 </div>
+<script>
+    paypal.Button.render({
+        env: 'sandbox', // sandbox | production
+        style: {
+            label: 'checkout',  // checkout | credit | pay | buynow | generic
+            size:  'responsive', // small | medium | large | responsive
+            shape: 'pill',   // pill | rect
+            color: 'gold'   // gold | blue | silver | black
+        },
+ 
+
+ 
+        client: {
+            sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+            production: ''
+        },
+ 
+        // Wait for the PayPal button to be clicked
+ 
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: '<?php echo $total ?>', currency: 'EUR' },
+                        
+                        }
+                    ]
+                }
+            });
+        },
+ 
+        // Wait for the payment to be authorized by the customer
+ 
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function() {
+                console.log(data);
+                window.location="verificador.php?paymentToken="+data.paymentToken+"&paymentID="+data.paymentID;
+            });
+        }
+   
+    }, '#paypal-button-container');
+ 
+</script>
 
 <?php
 include 'templates/pie.php';

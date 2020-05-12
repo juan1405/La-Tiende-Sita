@@ -1,3 +1,4 @@
+<!--Es la página de registro no contiene nada maás que el formulario para registrar el usuario en la BD-->
 <!doctype html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Registrarse</title>
 </head>
 
 <body class="bg-success">
@@ -20,11 +21,11 @@
             <div class="form-row">
                     <div class="col">
                         <label for="inputName">Nombre</label>
-                    <input type="text" class="form-control" placeholder="First name" name="nombre">
+                    <input type="text" class="form-control" placeholder="Nombre" name="nombre">
                     </div>
                     <div class="col">
                         <label for="inputLastName">Apellidos</label>
-                    <input type="text" class="form-control" placeholder="Last name" name="apellido">
+                    <input type="text" class="form-control" placeholder="Apellidos" name="apellido">
                     </div>
             </div>
             <div class="form-row">
@@ -34,12 +35,13 @@
                         </div>
                         <div class="form-group  col-md-6">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="" name="password">
+                            <small>Mínimo 8 caracteres, una mayúscula, una minúscula, un número y un símbolo</small>
                         </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Dirección</label>
-                <input type="text" class="form-control" id="inputAddress" name="direc">
+                <input type="text" placeholder="Calle ejemplo n20" class="form-control" id="inputAddress" name="direc">
             </div>
             <div class="form-group">
                 <label for="inputAddress2">País</label>

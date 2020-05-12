@@ -1,3 +1,4 @@
+<!--Es el carro de los usuarios compradores. Es idéntico al de los invitados con la diferencia de que este puede realizar la compra de dichos productos. Y por supuesto no pueden acceder nada más que éstos usuarios-->
 <?php
 
 include 'global/config.php';
@@ -15,30 +16,32 @@ if (!isset($_SESSION["usuario"])) {
 ?>
 
 <br>
-<h3>lista del carrrito</h3>
+<br>
+<h3 class="text-center">Automóvil seleccionado</h3>
 
-<?php  if (!empty($_SESSION['CARRITO'])) {
-    # code...
-
+<?php 
+if(isset($_SESSION['usuario'])) {
+    if (!empty($_SESSION['CARRITO'])) {
+ 
 
 ?>
 
 <table class="table table-light table-bordered">
     <tbody>
         <tr>
-            <th width="40%">Descripción</th>
+            <th width="40%">Nombre</th>
             <th width="15%" class="text-center">Cantidad</th>
             <th width="20%" class="text-center">Precio</th>
             <th width="20%"  class="text-center">Total</th>
-            <th width="5%">--</th>
+            <th width="5%"></th>
         </tr>
         <?php $total=0; ?>
         <?php foreach($_SESSION['CARRITO'] as $indice=>$producto) { ?>
        <tr>
             <td  width="40%"><?php echo $producto['NOMBRE'] ?></td>
             <td  width="15%"  class="text-center"><?php echo $producto['CANTIDAD'] ?></td>
-            <td  width="20%"  class="text-center"><?php echo $producto['PRECIO'] ?></td>
-            <td  width="20%"  class="text-center"><?php echo number_format($producto['PRECIO']*$producto['CANTIDAD'], 2)  ?></td>
+            <td  width="20%"  class="text-center"><?php echo number_format($producto['PRECIO'], 2)."€" ?></td>
+            <td  width="20%"  class="text-center"><?php echo number_format($producto['PRECIO']*$producto['CANTIDAD'], 2). "€"  ?></td>
            
            
             <td width="5%">
@@ -61,15 +64,15 @@ if (!isset($_SESSION["usuario"])) {
        <tr>
            <td colspan="5">
 
-            <form action="pagar.php" method="post">
+           <form action="pagar.php" method="post">
                 <div class="alert alert-success" role="alert">
                     <div class="form-group">
                     <label for="my-input">Correo de contacto:</label>
                     <input id="email" class="form-control" type="email" placeholder="por favor escribe tu correo" required name="email">
                     </div>
-                    <small id="emailHelp" class="form-text text-muted">Si sucede algún problema nuestro equipo técnico se pondrá en contacto con usted</small>
+                    <small id="emailHelp" class="form-text text-muted">Si sucede algún problema nuestro equipo técnico se pondrá en contacto con usted a través de este email.</small>
                 </div>
-                <button class="btn btn-primary btn btn-lg btn-block" value="proceder" class="btnAccion" type="submit"> Pagar >></button>
+                <button class="btn btn-primary btn btn-lg btn-block" value="proceder" class="btnAccion" type="submit">Realizar Compra</button>
                  
 
             </form>
@@ -82,10 +85,14 @@ if (!isset($_SESSION["usuario"])) {
 
 
 <?php }else {?>
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-danger text-center" role="alert">
         No hay productos en el carrito.
     </div>
     <?php } ?>
+    <?php }  ?>
+
+
+
 <?php
 include 'templates/pie.php';
 ?>

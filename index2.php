@@ -1,4 +1,6 @@
-
+<!--Este index es el de los usuarios logueados los cuales pueden comprar en la tienda
+Es idéntico al index de los usuarios invitados con la diferencia de que a este solo pueden acceder unos usuarios en concreto.
+-->
 <?php
 
 include 'global/config.php';
@@ -123,14 +125,7 @@ echo "<h3>Bienvenido a mi página: " . $_SESSION["usuario"] . "</h3><br><br>";
                 </div>
 
     <br>
-    <?php if ($mensaje!="") {
-        # code...
-     ?>
-        <div class="alert alert-primary" role="alert">
-            <?php echo $mensaje; ?>
-            <a href="mostrarCarrito.php" class="badge badge-success">Ver carrito</a>
-        </div>
-    <?php } ?>
+ 
 
     <div class="row">
 
@@ -138,7 +133,7 @@ echo "<h3>Bienvenido a mi página: " . $_SESSION["usuario"] . "</h3><br><br>";
     
         $sentencia=$pdo->prepare("SELECT * FROM tblproductos");
         $sentencia->execute();
-        $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+        $listaProductos=$sentencia->fetchAll();
     // print_r($listaProductos);
         
         ?>
@@ -148,7 +143,7 @@ echo "<h3>Bienvenido a mi página: " . $_SESSION["usuario"] . "</h3><br><br>";
                     <img class="card-img-top" title="<?php echo $producto['Nombre']  ?>" src="<?php echo $producto['Imagen']  ?>" alt="<?php echo $producto['Nombre']  ?>" data-toggle="popover"  data-trigger="hover" data-content="<?php echo $producto['Descripcion']  ?>" alt="<?php echo $producto['Nombre']  ?>" height="317px" >
                     <div class="card-body">
                         <span><?php  echo $producto['Nombre']  ?></span>
-                        <h5 class="card-title"><?php echo $producto['Precio']  ?>€</h5>
+                        <h5 class="card-title"><?php echo number_format($producto['Precio'],2)  ?>€</h5>
                         <p class="card-text"><?php echo $producto['Descripcion']  ?></p>   
 
                         <form action="" method="post">

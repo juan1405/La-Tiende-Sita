@@ -1,9 +1,10 @@
-
+<!--Muestra el carrito de los usuarios invitados-->
 <?php
 
 include 'global/config.php';
 include 'global/carrito.php';
 include 'templates/cabecera.php';
+
 
 ?>
 
@@ -11,7 +12,7 @@ include 'templates/cabecera.php';
 <h3 class="text-center">Automóvil seleccionado</h3>
 
 <?php  if (!empty($_SESSION['CARRITO'])) {
-    # code...
+    # Si no está vacía la sesión del carro te muestra todos los productos que haya guardado el usuario invitado
 
 
 ?>
@@ -19,19 +20,20 @@ include 'templates/cabecera.php';
 <table class="table table-light table-bordered">
     <tbody>
         <tr>
-            <th width="40%">Descripción</th>
+            <th width="40%">Nombre</th>
             <th width="15%" class="text-center">Cantidad</th>
             <th width="20%" class="text-center">Precio</th>
             <th width="20%"  class="text-center">Total</th>
-            <th width="5%">--</th>
+            <th width="5%"></th>
         </tr>
+        <!--Se hace un bucle para recorrer la sesión carrito y sacar los productos guardados por el usuario-->
         <?php $total=0; ?>
         <?php foreach($_SESSION['CARRITO'] as $indice=>$producto) { ?>
        <tr>
             <td  width="40%"><?php echo $producto['NOMBRE'] ?></td>
             <td  width="15%"  class="text-center"><?php echo $producto['CANTIDAD'] ?></td>
-            <td  width="20%"  class="text-center"><?php echo $producto['PRECIO'] ?></td>
-            <td  width="20%"  class="text-center"><?php echo number_format($producto['PRECIO']*$producto['CANTIDAD'], 2)  ?></td>
+            <td  width="20%"  class="text-center"><?php echo number_format($producto['PRECIO'], 2)."€" ?></td>
+            <td  width="20%"  class="text-center"><?php echo number_format($producto['PRECIO']*$producto['CANTIDAD'], 2)."€"  ?></td>
            
            
             <td width="5%">
@@ -56,7 +58,7 @@ include 'templates/cabecera.php';
 
             <form action="pagar.php" method="post">
                
-                <button class="btn btn-primary btn btn-lg btn-block" value="proceder" class="btnAccion" type="submit"> Pagar >></button>
+            <button class="btn btn-primary btn btn-lg btn-block" value="proceder" class="btnAccion" type="submit">Realizar Compra</button>
                  
 
             </form>
