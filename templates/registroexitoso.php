@@ -1,3 +1,5 @@
+<!--Esta página es sólo vista para el usuario-->
+
 <!DOCTYPE html>
 <html lang="en">
 

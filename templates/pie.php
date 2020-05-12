@@ -1,3 +1,4 @@
+<!--Contiene el pie de la vista del usuario-->
 </div>
 <div class="container-fluid wiki" >
         <div class="row mt-5">

@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
+<!--Esta es otra de las partes mas importantes del código.
+Comprueba que los datos que ha introducido el usuarios son correctos y no están vacíos. Una vez que los datos están correctos se registra el usuario en la BD 
+-->
 <?php
 if (!empty($_POST['password']) && !empty($_POST['login']) && !empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['pais']) && !empty($_POST['direc']) && !empty($_POST['ciudad']) && !empty($_POST['tel']) && !empty($_POST['cod'])) {
     if ((preg_match("/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/", $_POST['password']))) {
@@ -23,7 +17,6 @@ if (!empty($_POST['password']) && !empty($_POST['login']) && !empty($_POST['nomb
                                             $base = new PDO("mysql:host=localhost; dbname=tienda1", "root", "");
                                             $base ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                             if(isset($_POST['enviar'])){
-                                    
                                     
                                                 $existenciausql=("SELECT COUNT(*) FROM USUARIOS_PASS WHERE USUARIOS = :login");
                                                 $stmt1= $base->prepare($existenciausql);
@@ -92,7 +85,7 @@ if (!empty($_POST['password']) && !empty($_POST['login']) && !empty($_POST['nomb
                                 }
                                 
                             } else {
-                                echo "<small>Escriba una ciudad correcta correcto</small>";
+                                echo "<small>Escriba una ciudad correcta</small>";
                             }
                             
                         } else {
@@ -122,9 +115,5 @@ if (!empty($_POST['password']) && !empty($_POST['login']) && !empty($_POST['nomb
     echo "Completa todos los campos";
 }
 
-
-
-
 ?>
-</body>
-</html>
+

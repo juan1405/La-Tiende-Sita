@@ -1,8 +1,11 @@
+<!--Desencripta la información de los productos y hace que no se pierdan los productos mientras haya una sesión iniciada-->
 <?php  
 
 session_start();
 
 $mensaje="";
+
+/* Si existe el botón predefinado en otra página hace varios casos Agregar productos y Eliminar productos */
 
 if (isset($_POST["btnAccion"])) {
     switch ($_POST["btnAccion"]) {
@@ -33,6 +36,7 @@ if (isset($_POST["btnAccion"])) {
             }else {
                 $mensaje.= "UPSS... algo pasa con el precio"."</br>"; break;
             }
+            /*  Si no existe la sesión del carrito la crea y puede añadir productos al carro  y si has seleccionado el producto una vez hace que no puedas volver a ñadirlo a la cesta*/
             if (!isset($_SESSION['CARRITO'])) {
                         $producto=array(
                             'ID'=>$ID,
@@ -40,10 +44,10 @@ if (isset($_POST["btnAccion"])) {
                             'CANTIDAD'=>$CANTIDAD,
                             'PRECIO'=>$PRECIO);
                             $_SESSION['CARRITO'][0]=$producto;
+                            
                             $mensaje="Producto agregado al carrito";
 
             }else {
-
                         $idProductos=array_column($_SESSION['CARRITO'], "ID");
                         if (in_array($ID,$idProductos)) {
                             echo "<script>alert('El producto ya ha sido seleccionado')</script>";
@@ -57,13 +61,22 @@ if (isset($_POST["btnAccion"])) {
                             'PRECIO'=>$PRECIO);
                             $_SESSION['CARRITO'][$NumeroProductos]=$producto;
                             $mensaje="Producto agregado al carrito";
-                        }
-                     
-
+                        }    
             }
+            /* Convierte en un array los productos, esto es necesario para la factura */
+            $producto = array
+            (
+            "ID" => array($ID), 
+            "CANTIDAD" => array($CANTIDAD),
+            "PRECIO" => array($PRECIO)
+            );
+        
         break;
 
-        case 'Eliminar':
+       case 'Eliminar':
+
+        /* Te elimina los productos de la sesión del carrito con unset */
+                               
                     if (is_numeric( openssl_decrypt ($_POST["id"], COD, KEY))) {
                         $ID=openssl_decrypt ($_POST["id"], COD, KEY);
 
@@ -73,12 +86,12 @@ if (isset($_POST["btnAccion"])) {
                                 echo "<script>alert('Elemento borrado...')</script>";
                             }
                         }
+                        
                     }else {
                         $mensaje.= "upss ID incorrecto".$ID."</br>";
                     }
         break;
-     
-        
+  
     }
 }
 

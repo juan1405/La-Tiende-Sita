@@ -1,4 +1,4 @@
-
+<!--Contiene una de las 4 cabeceras necesarias-->
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,11 +12,9 @@
 
     <script src="https://kit.fontawesome.com/4507daba72.js" crossorigin="anonymous"></script>
 
-
-
     <link rel="stylesheet" href="../estilo/custom.css">
 
-    <title>La Tiende Sita</title>
+    <title>Mercedes-Benz</title>
   </head>
   <body class="wiki">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -27,7 +25,7 @@
         <div id="my-nav" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../admin.php">Home</a>
+                    <a class="nav-link" href="../admin.php">Inicio</a>
                 </li>
             
                 
@@ -39,7 +37,6 @@
         
     </nav>
     
-
 </br>
 </br>
 <div class="container-fluid wiki">

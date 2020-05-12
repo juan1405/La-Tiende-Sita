@@ -1,4 +1,4 @@
-
+<!--Contiene una de las 4 cabeceras necesarias-->
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="estilo/custom.css">
 
-    <title>La Tiende Sita</title>
+    <title>Mercedes-Benz</title>
   </head>
   <body class="wiki">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -25,10 +25,10 @@
         <div id="my-nav" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index2.php">Home</a>
+                    <a class="nav-link" href="index2.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mostrarCarrito2.php"> <i class="fas fa-shopping-cart"></i> (<?php 
+                    <a class="nav-link" href="mostrarCarrito2.php"> <i class="fa fa-shopping-cart"></i> (<?php 
                         echo (empty($_SESSION['CARRITO']))?0:count($_SESSION['CARRITO']); 
                     ?>)</a>
                 </li>

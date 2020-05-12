@@ -1,3 +1,4 @@
+<!--Contiene una de las 4 cabeceras necesarias-->
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,7 +16,6 @@
 
     <link rel="stylesheet" href="estilo/custom.css">
 
-    <title>La Tiende Sita</title>
   </head>
   <body class="wiki">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -26,7 +26,7 @@
         <div id="my-nav" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php">Home</a>
+                    <a class="nav-link" href="index.php">Inicio</a>
                 </li>
                 <li class="nav-item">
                <a class="nav-link" href="mostrarCarrito.php"> <i class="fas fa-shopping-cart"></i> (<?php 
@@ -43,8 +43,7 @@
             
         </div>
         
-    </nav>
-    
+    </nav> 
 
 </br>
 </br>
