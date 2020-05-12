@@ -1,3 +1,4 @@
+<!--Creamos la conexión a la BD-->
 <?php
 	class  Db{
 		private static $conexion=NULL;

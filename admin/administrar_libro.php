@@ -29,7 +29,7 @@ $libro= new Libro();
 				print "Introduce un nombre válido";
 			}
 		}
-	// si el elemento de la vista con nombre actualizar no viene nulo, llama al crud y actualiza el libro
+	// si el elemento de la vista con nombre actualizar no viene nulo, llama al crud y actualiza el producto
 	}elseif(isset($_POST['actualizar'])){
 		$libro->setId($_POST['ID']);
 		$libro->setNombre($_POST['nombre']);
@@ -38,7 +38,7 @@ $libro= new Libro();
 		$libro->setImagen($_POST['imagen']);
 		$crud->actualizar($libro);
 		header('Location: pagupdate.php');
-	// si la variable accion enviada por GET es == 'e' llama al crud y elimina un libro
+	// si la variable accion enviada por GET es == 'e' llama al crud y elimina un producto
 	}elseif ($_GET['accion']=='e') {
 		$crud->eliminar($_GET['ID']);
 		header('Location: pagborrar.php');	

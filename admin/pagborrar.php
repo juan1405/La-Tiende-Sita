@@ -1,3 +1,4 @@
+<!--Esta página es sólo vista para el admin-->
 <?php
  session_start();
 

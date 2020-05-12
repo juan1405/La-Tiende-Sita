@@ -1,27 +1,27 @@
+<!--Ingresa un producto a la BD-->
 <?php
 include '../templates/cabeceraadmin.php';
-
  session_start();
 ?>
+
 <?php
+
+/*Esta condición evalua si existe la sesión de administrador y si no existe no deja acceder a esta parte y te manda al login*/
 
 if (!isset($_SESSION["admin"])) {
     header("Location: ../login.php");
     exit();
-   
-
 }
+
 ?>
 <br>
 <br>
-
 <body class="wiki">
     <div class="container-fluid">
       
         <!--Menú-->
         <div class="row  text-white ">
-            <div class="col-12 text-dark ">
-		
+            <div class="col-12 text-dark ">	
             <form class="text-center" action='administrar_libro.php' method='post'>
                 <div class="form-row">
                     <div class="col text-center">

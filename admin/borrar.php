@@ -1,18 +1,19 @@
-
+<!-- Esta parte sirve para la parte de administración de los productos. Concretamente elimina el producto que esté en nuestra base de datos -->
 <?php
 include '../templates/cabeceraadmin.php';
     session_start();
-
-
 ?>
+
 <?php
+
+/*Esta condición evalua si existe la sesión de administrador y si no existe no deja acceder a esta parte y te manda al login*/
 
 if (!isset($_SESSION["admin"])) {
     header("Location: ../login.php");
     exit();
-
 }
 ?>
+
 <?php
 //incluye la clase Libro y CrudLibro
 require_once('crud_libro.php');
@@ -22,7 +23,6 @@ $libro= new Libro();
 //obtiene todos los libros con el método mostrar de la clase crud
 $listaLibros=$crud->mostrar();
 ?>
-
 
 <br>
 <br>
@@ -38,12 +38,12 @@ $listaLibros=$crud->mostrar();
                          <th scope="col">Nombre</th>
                          <th scope="col">Descripcion</th>
                          <th scope="col">Precio</th>
-                         
+                        
                          <th scope="col">Borrar producto</th>
                      </tr>
                  </thead>
                  <tbody>
-
+                      <!--Con un bucle recorremos el array $listaLibros e imprimimos el resultado. Seguido hay un enlace que elimina el libro-->
                      <?php foreach ($listaLibros as $libro) {?>
                         <tr>
                             <th scope="row"><?php echo $libro->getNombre() ?></th>

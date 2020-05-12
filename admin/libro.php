@@ -1,3 +1,4 @@
+<!--Define la clase libro (adpatado a productos) con sus funciones en particular-->
 <?php
 	class Libro{
 		private $ID;
